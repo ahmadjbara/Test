@@ -2330,7 +2330,8 @@
         if (!~['==', '===', '>', '>=', '<', '<=', '!=', '!=='].indexOf(operator)) {
           throw new Error('Invalid operator "' + operator + '"');
         }
-        var test = new Assertion(eval(val + operator + val2), msg);
+        var myeval = eval;
+        var test = new Assertion(myeval(val + operator + val2), msg);
         test.assert(
             true === flag(test, 'object')
           , 'expected ' + util.inspect(val) + ' to be ' + operator + ' ' + util.inspect(val2)
